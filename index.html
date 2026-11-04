@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#5a2d82">
+  <title>WiFi Inspector - فاحص شبكة الواي فاي</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="manifest" href="./manifest.json">
+</head>
+<body>
+  <header><h1>فاحص شبكة الواي فاي</h1><p>تسجيل معلومات الشبكة والأجهزة المصرّح لك بفحصها</p></header>
+  <main>
+    <section class="card">
+      <h2>بيانات الراوتر</h2>
+      <label>اسم الشبكة (SSID)<input id="ssid" placeholder="اسم شبكة الواي فاي"></label>
+      <label>عنوان الراوتر (IP)<input id="routerIp" placeholder="مثال: 192.168.1.1"></label>
+      <label>الشركة أو الموديل<input id="routerModel" placeholder="اختياري"></label>
+      <button id="saveRouter">حفظ بيانات الراوتر</button>
+      <button class="secondary" id="openRouter">فتح صفحة إدارة الراوتر</button>
+    </section>
+
+    <section class="card">
+      <h2>تسجيل فحص جديد</h2>
+      <label>عدد الأجهزة الظاهرة<input id="deviceCount" type="number" min="0" placeholder="0"></label>
+      <label>ملاحظات<textarea id="scanNotes" rows="3" placeholder="اكتب ملاحظات الفحص"></textarea></label>
+      <button id="saveScan">حفظ نتيجة الفحص</button>
+    </section>
+
+    <section class="card">
+      <h2>إضافة جهاز يدويًا</h2>
+      <label>اسم الجهاز<input id="deviceName" placeholder="مثال: هاتف"></label>
+      <label>نوع الجهاز<input id="deviceType" placeholder="هاتف / كمبيوتر / غير معروف"></label>
+      <label>عنوان IP<input id="deviceIp" placeholder="اختياري"></label>
+      <label>عنوان MAC<input id="deviceMac" placeholder="اختياري"></label>
+      <label>ملاحظات<input id="deviceNotes" placeholder="اختياري"></label>
+      <button id="addDevice">إضافة الجهاز</button>
+    </section>
+
+    <section class="card">
+      <h2>الأجهزة المسجلة</h2><div id="devicesList" class="empty">لا توجد أجهزة مسجلة بعد.</div>
+    </section>
+    <section class="card">
+      <h2>سجل الفحوصات</h2><div id="scansList" class="empty">لا توجد فحوصات محفوظة بعد.</div>
+    </section>
+    <section class="card">
+      <h2>النسخ الاحتياطي</h2>
+      <button id="exportCsv">تنزيل تقرير CSV</button>
+      <button class="secondary" id="exportJson">تنزيل نسخة احتياطية JSON</button>
+      <p class="hint">البيانات محفوظة محليًا على هذا الجهاز والمتصفح. لا توجد مزامنة سحابية مفعّلة في هذه النسخة.</p>
+    </section>
+  </main>
+  <footer>WiFi Inspector · استخدم التطبيق على الشبكات التي تملكها أو لديك إذن بفحصها.</footer>
+  <script src="./app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => navigator.serviceWorker.register("./service-worker.js").catch(() => {}));
+    }
+  </script>
+</body>
+</html>
