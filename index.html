@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#5a2d82"><meta name="description" content="WiFi Inspector">
+<link rel="manifest" href="manifest.json"><link rel="stylesheet" href="style.css">
+<title>WiFi Inspector - كاشف الشبكة</title>
+</head>
+<body>
+<header><div class="brand"><span class="logo">⌁</span><div><b>WiFi Inspector</b><small>كاشف الشبكة الذكي</small></div></div><span id="connection">● محلي</span></header>
+<main>
+<section class="hero"><div><small>إدارة شبكة المنزل</small><h1>مرحباً بك</h1><p>سجّل بيانات الراوتر والأجهزة ونتائج الفحص.</p></div><div class="wifi">◉</div></section>
+<section class="stats"><article>الأجهزة المسجلة<strong id="deviceCount">0</strong></article><article>سجلات الفحص<strong id="scanCount">0</strong></article><article>التخزين<strong>محلي</strong></article></section>
+<nav><button class="tab active" data-tab="home">الرئيسية</button><button class="tab" data-tab="devices">الأجهزة</button><button class="tab" data-tab="history">السجل</button><button class="tab" data-tab="settings">الإعدادات</button></nav>
+<section id="home" class="panel active">
+<div class="notice"><b>تنبيه تقني</b><p>نسخة الويب لا تستطيع اكتشاف جميع أجهزة الشبكة تلقائياً. يمكن تسجيل النتائج التي تظهر في صفحة إدارة الراوتر. لا يمكنها قراءة ملفات أو رسائل أو كلمات مرور الأجهزة.</p></div>
+<div class="card"><h2>بيانات الراوتر</h2><label>اسم الشبكة<input id="ssid" placeholder="Home WiFi"></label><label>عنوان الراوتر<input id="routerIp" placeholder="192.168.1.1"></label><label>الشركة أو الموديل<input id="routerModel"></label><button id="saveRouter">حفظ بيانات الراوتر</button><button id="openRouter" class="secondary">فتح صفحة الراوتر</button></div>
+<div class="card"><h2>تسجيل نتيجة فحص</h2><label>عدد الأجهزة الظاهرة<input id="foundCount" type="number" min="0" value="0"></label><label>ملاحظات<textarea id="scanNotes"></textarea></label><button id="saveScan">حفظ نتيجة الفحص</button></div>
+</section>
+<section id="devices" class="panel"><div class="heading"><h2>الأجهزة المعروفة</h2><button id="addDevice">＋ إضافة جهاز</button></div><div id="deviceList" class="empty">لا توجد أجهزة مسجلة.</div></section>
+<section id="history" class="panel"><div class="heading"><h2>سجل الفحوصات</h2><button id="exportCsv" class="secondary">تصدير CSV</button></div><div id="historyList" class="empty">لا توجد فحوصات.</div></section>
+<section id="settings" class="panel"><div class="card"><h2>التخزين المحلي</h2><p>تُحفظ البيانات على هذا الجهاز باستخدام IndexedDB وتبقى متاحة دون إنترنت بعد تحميل التطبيق.</p></div><div class="card"><h2>Firebase</h2><p>المزامنة السحابية تحتاج إعداد مشروع Firebase والمصادقة وقواعد قاعدة البيانات. ملف الإعداد مرفق بخانات فارغة.</p><button id="syncNow" class="secondary">حالة المزامنة</button></div><div class="card"><h2>إدارة البيانات</h2><button id="clearData" class="danger">حذف جميع البيانات المحلية</button></div></section>
+</main>
+<div id="modal" class="modal hidden"><div class="dialog"><div class="heading"><h2>إضافة جهاز</h2><button id="closeModal" class="secondary">إغلاق</button></div><label>اسم الجهاز<input id="dName"></label><label>النوع<input id="dType" placeholder="هاتف / تلفاز / حاسوب"></label><label>IP اختياري<input id="dIp"></label><label>MAC اختياري<input id="dMac"></label><label>ملاحظات<textarea id="dNotes"></textarea></label><button id="saveDevice">حفظ الجهاز</button></div></div>
+<div id="toast"></div><footer>WiFi Inspector · الإصدار 1.0</footer>
+<script src="firebase-config.js"></script><script src="app.js"></script>
+</body></html>
